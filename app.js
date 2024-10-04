@@ -1,19 +1,31 @@
+const grid = document.querySelector("#container");
+
 const generateGrid = () => {
 
-    const grid = document.querySelector("#container");
-
     for(let i = 0; i < 16; i++){
-        const row = document.createElement("div");
+        const col = document.createElement("div");
 
         for(let j = 0; j < 16; j++){
             const square = document.createElement("div");
-            square.textContent = `${j}`;
+            square.classList.add("grid-item");
 
-            row.appendChild(square);
+            col.appendChild(square);
         }
 
-        grid.appendChild(row);
+        grid.appendChild(col);
     }
 }
 
 generateGrid();
+
+const gridItems = document.querySelectorAll(".grid-item");
+
+gridItems.forEach(gridItem => {
+    gridItem.addEventListener("mouseover", () => {
+        const rndmRed = Math.random() * 256;
+        const rndmGreen = Math.random() * 256;
+        const rndmBlue = Math.random() * 256;
+
+        gridItem.setAttribute("style", `background-color: rgb(${rndmRed}, ${rndmGreen}, ${rndmBlue})`);
+    })
+});
